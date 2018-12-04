@@ -10,45 +10,50 @@ _pinyin_path = os.path.join(raw_dir, 'pinyin.txt')
 
 
 def _get_vowel(pinyin):
-    i = len(pinyin) - 1
-    while i >= 0 and \
-            pinyin[i] in ['A', 'O', 'E', 'I', 'U', 'V']:
-        i -= 1
-    return pinyin[i+1 : ]
+    i = 0
+    while i < len(pinyin) and \
+            pinyin[i] not in ['A', 'O', 'E', 'I', 'U', 'V']:
+        i += 1
+    return pinyin[i : ]
 
 def _get_rhyme(pinyin):
     vowel = _get_vowel(pinyin)
     if vowel in ['A', 'IA', 'UA']:
         return 1
-    elif vowel in ['O', 'E', 'UO']:
+    elif vowel in ['O', 'UO']:
         return 2
-    elif vowel in ['IE', 'VE']:
+    elif vowel == 'E':
         return 3
-    elif vowel in ['AI', 'UAI']:
+    elif vowel in ['IE', 'UE']:
         return 4
-    elif vowel in ['EI', 'UI']:
+    elif vowel == 'I' and pinyin[0] in ['Z', 'C', 'S']:
         return 5
-    elif vowel in ['AO', 'IAO']:
+    elif vowel == 'ER':
         return 6
-    elif vowel in ['OU', 'IU']:
+    elif vowel == 'I' and pinyin[0] in ['B', 'P', 'M', 'F', 'D', 'T', 'N', 'L', 'J', 'Q', 'X', 'Y']:
         return 7
-    elif vowel in ['AN', 'IAN', 'UAN', 'VAN']:
-        return 8
-    elif vowel in ['EN', 'IN', 'UN', 'VN']:
+    elif vowel in ['EI', 'UI']:
+        return 8   
+    elif vowel in ['AI', 'UAI']:
         return 9
-    elif vowel in ['ANG', 'IANG', 'UANG']:
-        return 10
-    elif vowel in ['ENG', 'ING']:
-        return 11
-    elif vowel in ['ONG', 'IONG']:
-        return 12
-    elif (vowel == 'I' and not pinyin[0] in ['Z', 'C', 'S', 'R']) \
-            or vowel == 'V':
-        return 13
-    elif vowel == 'I':
-        return 14
     elif vowel == 'U':
+        return 10
+    elif vowel == 'V':
+        return 11
+    elif vowel in ['OU', 'IU']:
+        return 12
+    elif vowel in ['AO', 'IAO']:
+        return 13
+    elif vowel in ['AN', 'IAN', 'UAN']:
+        return 14
+    elif vowel in ['EN', 'IN', 'UN', 'VN']:
         return 15
+    elif vowel in ['ANG', 'IANG', 'UANG']:
+        return 16
+    elif vowel in ['ENG', 'ING']:
+        return 17
+    elif vowel in ['ONG', 'IONG']:
+        return 18
     return 0
 
 
