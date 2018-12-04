@@ -8,7 +8,7 @@ from paths import save_dir
 from pron_dict import PronDict
 from random import random
 from singleton import Singleton
-from utils import CHAR_VEC_DIM, NUM_OF_SENTENCES
+from helper import CHAR_VEC_DIM, NUM_OF_SENTENCES
 import numpy as np
 import os
 import sys
@@ -316,13 +316,4 @@ class Generator(Singleton):
         for sentence in sentences:
             targets.extend(map(self.char_dict.char2int, sentence))
         return targets
-
-
-# For testing purpose.
-if __name__ == '__main__':
-    generator = Generator()
-    keywords = ['四时', '变', '雪', '新']
-    poem = generator.generate(keywords)
-    for sentence in poem:
-        print(sentence)
 

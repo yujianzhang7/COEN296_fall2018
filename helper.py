@@ -3,7 +3,6 @@
 
 from paths import raw_dir, sxhy_path, check_uptodate
 from singleton import Singleton
-from utils import is_cn_sentence, split_sentences
 import jieba
 import os
 
@@ -43,7 +42,6 @@ class Segmenter(Singleton):
             self.sxhy_dict = set(fin.read().split())
 
     def segment(self, sentence):
-        # TODO: try CRF-based segmentation.
         toks = []
         idx = 0
         while idx + 4 <= len(sentence):
@@ -64,11 +62,29 @@ class Segmenter(Singleton):
         return toks
 
 
-# For testing purpose.
-if __name__ == '__main__':
-    segmenter = Segmenter()
-    with open(os.path.join(raw_dir, 'qts_tab.txt'), 'r') as fin:
-        for line in fin.readlines()[1 : 6]:
-            for sentence in split_sentences(line.strip().split()[3]):
-                print(' '.join(segmenter.segment(sentence)))
+def is_cn_char(ch):
+    """ Test if a char is a Chinese character. """
+    return ch >= u'\u4e00' and ch <= u'\u9fa5'
 
+def is_cn_sentence(sentence):
+    """ Test if a sentence is made of Chinese characters. """
+    for ch in sentence:
+        if not is_cn_char(ch):
+            return False
+    return True
+
+def split_sentences(text):
+    """ Split a piece of text into a list of sentences. """
+    sentences = []
+    i = 0
+    for j in range(len(text) + 1):
+        if j == len(text) or \
+                text[j] in [u'，', u'。', u'！', u'？', u'、', u'\n']:
+            if i < j:
+                sentence = u''.join(filter(is_cn_char, text[i:j]))
+                sentences.append(sentence)
+            i = j + 1
+    return sentences
+
+NUM_OF_SENTENCES = 4
+CHAR_VEC_DIM = 512

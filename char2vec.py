@@ -7,7 +7,7 @@ from numpy.random import uniform
 from paths import char2vec_path, check_uptodate
 from poems import Poems
 from singleton import Singleton
-from utils import CHAR_VEC_DIM
+from helper import CHAR_VEC_DIM
 import numpy as np
 import os
 
@@ -42,8 +42,4 @@ class Char2Vec(Singleton):
         return np.stack(map(self.get_vect, text)) if len(text) > 0 \
                 else np.reshape(np.array([[]]), [0, CHAR_VEC_DIM])
 
-
-# For testing purpose.
-if __name__ == '__main__':
-    char2vec = Char2Vec()
 

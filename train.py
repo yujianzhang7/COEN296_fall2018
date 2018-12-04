@@ -1,9 +1,9 @@
 #! /usr/bin/env python3
 #-*- coding:utf-8 -*-
 
-from generate import Generator
+from generator import Generator
 from gensim import models
-from plan import train_planner
+from planner import train_planner
 from paths import save_dir
 import argparse
 import os

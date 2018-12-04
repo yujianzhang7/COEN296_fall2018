@@ -3,7 +3,7 @@
 
 from paths import raw_dir, char_dict_path, check_uptodate
 from singleton import Singleton
-from utils import is_cn_char
+from helper import is_cn_char
 import os
 
 
@@ -77,13 +77,4 @@ class CharDict(Singleton):
 
     def __contains__(self, ch):
         return ch in self._char2int
-
-
-# For testing purpose.
-if __name__ == '__main__':
-    char_dict = CharDict()
-    for i in range(10):
-        ch = char_dict.int2char(i)
-        print(ch)
-        assert i == char_dict.char2int(ch)
 

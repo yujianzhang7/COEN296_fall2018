@@ -5,7 +5,7 @@ from char_dict import end_of_sentence, start_of_sentence
 from paths import gen_data_path, plan_data_path, check_uptodate
 from poems import Poems
 from rank_words import RankedWords
-from segment import Segmenter
+from helper import Segmenter
 import re
 import subprocess
 
@@ -71,11 +71,5 @@ def batch_train_data(batch_size):
                 keywords.clear()
                 contexts.clear()
                 sentences.clear()
-        # For simplicity, only return full batches for now.
-
-
-if __name__ == '__main__':
-    if not check_uptodate(plan_data_path) or \
-            not check_uptodate(gen_data_path):
-        gen_train_data()
+        # simply return full batches
 

@@ -95,17 +95,3 @@ class PronDict(Singleton):
         return self._pron_dict[ch]
 
 
-# For testing purpose.
-if __name__ == '__main__':
-    pron_dict = PronDict()
-    assert pron_dict.co_rhyme('生', '情')
-    assert not pron_dict.co_rhyme('蛤', '人')
-    assert pron_dict.counter_tone('平', '仄')
-    assert not pron_dict.counter_tone('起', '弃')
-    cnt = 0
-    for ch in pron_dict:
-        print(ch + ": "+str(pron_dict[ch]))
-        cnt += 1
-        if cnt > 20:
-            break
-

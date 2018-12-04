@@ -4,7 +4,7 @@ from paths import save_dir, plan_data_path, check_uptodate
 from random import random, shuffle
 from rank_words import RankedWords
 from singleton import Singleton
-from utils import split_sentences, NUM_OF_SENTENCES
+from helper import split_sentences, NUM_OF_SENTENCES
 import jieba
 import os
 
@@ -75,11 +75,4 @@ class Planner(Singleton):
         for sentence in split_sentences(text):
             keywords.update(extract_from_sentence(sentence))
         return keywords
-
-
-# For testing purpose.
-if __name__ == '__main__':
-    planner = Planner()
-    keywords = planner.plan("春天到了，桃花开了。")
-    print(keywords)
 

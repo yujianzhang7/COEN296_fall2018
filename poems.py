@@ -5,7 +5,7 @@ from char_dict import CharDict
 from paths import raw_dir, poems_path, check_uptodate
 from random import shuffle
 from singleton import Singleton
-from utils import split_sentences
+from helper import split_sentences
 import os
 
 _corpus_list = ['qts_tab.txt']
@@ -56,10 +56,4 @@ class Poems(Singleton):
     def shuffle(self):
         shuffle(self.poems)
 
-
-# For testing purpose.
-if __name__ == '__main__':
-    poems = Poems()
-    for i in range(10):
-        print(' '.join(poems[i]))
 

@@ -3,7 +3,7 @@
 
 from paths import raw_dir, wordrank_path, check_uptodate
 from poems import Poems
-from segment import Segmenter
+from helper import Segmenter
 from singleton import Singleton
 import json
 import os
@@ -126,10 +126,4 @@ class RankedWords(Singleton):
             return len(self.word2rank)
         return self.word2rank[word]
 
-
-# For testing purpose.
-if __name__ == '__main__':
-    ranked_words = RankedWords()
-    for i in range(100):
-        print(ranked_words[i])
 
