@@ -22,9 +22,7 @@ def _get_stopwords():
         for line in fin.readlines():
             stopwords.add(line.strip())
     return stopwords
-
-
-# TODO: try other keyword-extraction algorithms. This doesn't work well.
+    
 
 class RankedWords(Singleton):
 

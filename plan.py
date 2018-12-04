@@ -1,6 +1,3 @@
-#! /usr/bin/env python3
-#-*- coding:utf-8 -*-
-
 from data_utils import gen_train_data
 from gensim import models
 from paths import save_dir, plan_data_path, check_uptodate
@@ -16,7 +13,6 @@ _plan_model_path = os.path.join(save_dir, 'plan_model.bin')
 
 
 def train_planner():
-    # TODO: try other keyword-expansion models.
     print("Training Word2Vec-based planner ...")
     if not os.path.exists(save_dir):
         os.mkdir(save_dir)

@@ -1,6 +1,3 @@
-#! /usr/bin/env python3
-# -*- coding:utf-8 -*-
-
 import os
 
 
@@ -18,7 +15,6 @@ plan_data_path = os.path.join(data_dir, 'plan_data.txt')
 gen_data_path = os.path.join(data_dir, 'gen_data.txt')
 
 
-# TODO: configure dependencies in another file.
 _dependency_dict = {
         poems_path : [char_dict_path],
         char2vec_path : [char_dict_path, poems_path],
@@ -33,12 +29,15 @@ def check_uptodate(path):
         # File not found.
         return False
     return True
-    timestamp = os.path.getmtime(path)
-    if path in _dependency_dict:
-        for dependency in _dependency_dict[path]:
-            if not os.path.exists(dependency) or \
-                    os.path.getmtime(dependency) > timestamp:
-                # File stale.
-                return False
-    return True
+    '''
+        we do not check the dependency right now 
+    '''
+    # timestamp = os.path.getmtime(path)
+    # if path in _dependency_dict:
+    #     for dependency in _dependency_dict[path]:
+    #         if not os.path.exists(dependency) or \
+    #                 os.path.getmtime(dependency) > timestamp:
+    #             # File stale.
+    #             return False
+    # return True
 
