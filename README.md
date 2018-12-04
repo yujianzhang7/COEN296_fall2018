@@ -12,7 +12,7 @@ Another problem is that the rhyme functionality is not working.
 ## solution
 We extended the input formating. Now it would extract keywords from the user input, no matter sentences or words. We use [Jieba](https://pypi.org/project/jieba/) module to split input sentence input word phrase. We use [Gensim](https://pypi.org/project/gensim/), [word2vec](https://pypi.org/project/word2vec/) and [word rank algorithm](https://github.com/classactcollin/WordRank) to extract from the input value. When the extracted keywords count is less than 4, we could fill up some similar keywords to make it be 4; when the keywords count is more than 4, we could use the highest scored 4 keywords as our input keywords. 
 
-We fixed the bug that rhyme funtionality is not working. We also optimized the rhyme detecting algorithm to make it better. 
+We tried to fix the bug that rhyme funtionality is not working. We also tried to optimize the rhyme detecting algorithm to make it better. However, this seeems not working. 
 
 ## system requirement
 python 3.6.6
