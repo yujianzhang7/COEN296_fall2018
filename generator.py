@@ -186,7 +186,8 @@ class Generator(Singleton):
             self.trained = True
 
     def generate(self, keywords):
-        assert NUM_OF_SENTENCES == len(keywords)
+        if NUM_OF_SENTENCES < len(keywords):
+            keywords = keywords[:4]
         pron_dict = PronDict()
         context = start_of_sentence()
         with tf.Session() as session:
